@@ -35,4 +35,5 @@ public class HashPartitioner implements Partitioner {
 	public void close() {
 	}
 
+
 }

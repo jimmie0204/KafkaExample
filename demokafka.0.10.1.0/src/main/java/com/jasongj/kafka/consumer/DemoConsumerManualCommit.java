@@ -36,12 +36,13 @@ public class DemoConsumerManualCommit {
 		consumer.subscribe(Arrays.asList(topic));
 		AtomicLong atomicLong = new AtomicLong();
 		while (true) {
+			System.out.println("开始拉取一波====");
 			ConsumerRecords<String, String> records = consumer.poll(100);
 			records.forEach(record -> {
 				System.out.printf("client : %s , topic: %s , partition: %d , offset = %d, key = %s, value = %s%n",
 						clientid, record.topic(), record.partition(), record.offset(), record.key(), record.value());
 				if (atomicLong.get() % 10 == 0) {
-//					consumer.commitSync();
+					consumer.commitSync();
 				}
 			});
 		}
