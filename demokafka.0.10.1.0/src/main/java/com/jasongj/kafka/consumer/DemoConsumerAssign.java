@@ -36,6 +36,7 @@ public class DemoConsumerAssign {
 		consumer.assign(Arrays.asList(new TopicPartition(topic, 0), new TopicPartition(topic, 1)));
 		while (true) {
 			System.out.println("开始拉取一波====");
+//			consumer.seek(new TopicPartition(topic, 0),1);
 			ConsumerRecords<String, String> records = consumer.poll(1000);
 			records.forEach(record -> {
 				System.out.printf("开始打印==========client : %s , topic: %s , partition: %d , offset = %d, key = %s, value = %s%n", clientid, record.topic(),
